@@ -1,0 +1,19 @@
+{
+  "name": "trybullmq-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ritulsingh",
+  "license": "ISC",
+  "dependencies": {
+    "bullmq": "^3.6.5",
+    "fastify": "^4.13.0",
+    "ioredis": "^5.3.1"
+  },
+  "devDependencies": {
+    "loadtest": "^5.2.0"
+  }
+}
