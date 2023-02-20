@@ -1,5 +1,6 @@
-const { Queue } = require('bullmq');
 const fastify = require('fastify')({ logger: true })
+const { Queue } = require("bullmq");
+const { basicAuth } = require("./bullmq-dashboard/bullmq-ui");
 
 const redisConfig = {
     connection: {
@@ -9,15 +10,30 @@ const redisConfig = {
 }
 
 // Create a new connection in every instance
-const queue = new Queue('Cars', redisConfig, console.log("Successfully connected to redis!"));
+const queue = new Queue('Cars', redisConfig);
+const queueTwo = new Queue('queueTwo', redisConfig);
+const queueThree = new Queue('queueThree', redisConfig);
+const queueFour = new Queue('queueFour', redisConfig);
+const queueFive = new Queue('queueFive', redisConfig);
+
+fastify.register(basicAuth, {
+    queues: [
+       queue,
+       queueTwo,
+       queueThree,
+       queueFour,
+       queueFive
+    ]
+});
 
 
 const addJobsToQueue = async (type, message) => {
     await queue.add('paint', { type, message });
-    // The job will now wait at least 5 seconds before it is processed.
-    // await queue.add('paint', { type, message }, { delay });
-    // The simplest option is to set removeOnComplete/Fail to "true", in this case, all jobs will be removed automatically as soon as they are finalized
-    await queue.add('paint', { type, message }, { removeOnComplete: true, removeOnFail: true });
+    await queueTwo.add('queueTwo', { type, message }, { removeOnComplete: true, removeOnFail: true });
+    await queueThree.add('queueThree', { type, message }, { removeOnComplete: true, removeOnFail: true });
+    await queueFour.add('queueFour', { type, message }, { removeOnComplete: true, removeOnFail: true });
+    await queueFive.add('queueFive', { type, message });
+    
 }
 
 fastify.post('/send', (req, res) => {

@@ -1,0 +1,20 @@
+{
+    "apps":[
+        {
+            "name": "producer",
+            "script": "./producer.js",
+            "watch": true,
+            "ignore_watch": ["node_modules"],
+            "instances": 1,
+            "exce_mode": "cluster"
+        },
+        {
+            "name": "consumer",
+            "script": "./consumer.js",
+            "watch": true,
+            "ignore_watch": ["node_modules"],
+            "instances": 1,
+            "exce_mode": "cluster"
+        }
+    ]
+}

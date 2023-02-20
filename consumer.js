@@ -13,6 +13,10 @@ function consumer(job) {
 }
 
 const worker = new Worker('Cars', consumer, redisConfig, console.log("Worker started"));
+const queueTwo = new Worker('queueTwo', consumer, redisConfig, console.log("Worker started"));
+const queueThree = new Worker('queueThree', consumer, redisConfig, console.log("Worker started"));
+const queueFour = new Worker('queueFour', consumer, redisConfig, console.log("Worker started"));
+const queueFive = new Worker('queueFive', consumer, redisConfig, console.log("Worker started"));
 
 worker.on('completed', (job) => {
     // Do something with the return value.

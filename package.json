@@ -9,6 +9,8 @@
   "author": "ritulsingh",
   "license": "ISC",
   "dependencies": {
+    "@bull-board/api": "^4.12.1",
+    "@bull-board/fastify": "^4.12.1",
     "bullmq": "^3.6.5",
     "fastify": "^4.13.0",
     "ioredis": "^5.3.1"
