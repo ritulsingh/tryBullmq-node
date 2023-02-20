@@ -15,7 +15,7 @@ function basicAuth(fastify, { queues }, next) {
 
     fastify.get("/bb/login", async (req, reply) => {
         const { user, key } = req.query;
-        if (key !== '289JC1pau87fMjiWBBET' || user !== 'bb-admin') {
+        if (key !== 'ritulsingh' || user !== 'bb-admin') {
             return reply.status(403).send('Unauthorized!');
         }
         reply.redirect(basePath);
